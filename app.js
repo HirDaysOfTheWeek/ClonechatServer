@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
 var users = require('./routes/users');
+var snaps = require('./routes/snaps')
 
 var http = require('http').Server(app);
 
@@ -28,5 +29,6 @@ http.listen(PORT, function(){
 });
 
 app.use('/users', users);
+apps.use('/snaps', snaps);
 
 module.exports = app;
