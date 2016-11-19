@@ -5,6 +5,10 @@ This is the server used to support Clonechat, it is in active development.
 
 ### Testing
 
+* Go to your root directory for this repository and open a new tab
+
+* In the new tab, run `mongod` and AFTER, in the original tab, run `node app.js`
+
 * For text: `curl -v -F fieldname=value` and repeat the part after `-v` for every field needed in the request
 
 * For images: same as above but prepend an @ symbol before the path name so `curl -v -F imagefieldname=@imagepath.jpg`
