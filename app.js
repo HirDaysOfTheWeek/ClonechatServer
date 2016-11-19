@@ -8,9 +8,6 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-app.use(bodyParser.urlencoded({extended : false}));
-app.use(bodyParser.json());
-
 var users = require('./routes/users');
 var snaps = require('./routes/snaps')
 
@@ -29,6 +26,6 @@ http.listen(PORT, function(){
 });
 
 app.use('/users', users);
-apps.use('/snaps', snaps);
+app.use('/snaps', snaps);
 
 module.exports = app;
