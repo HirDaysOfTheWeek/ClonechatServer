@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 
 var FriendshipSchema = new mongoose.Schema({
-  userA : {String : User, required: true, unique: true},
-  userB : {String: User, required: true, unique: true},
-  accepted: {Boolean, default: false},
+  userA : {type: String, required: true},
+  userB : {type: String, required: true},
+  friendshipID: {type: String, unique: true},
+  accepted: {type: Boolean, default: false},
   createdAt: {type: Date, default: Date.now}
 });
 
