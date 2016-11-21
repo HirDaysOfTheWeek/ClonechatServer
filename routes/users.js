@@ -1,10 +1,12 @@
 var express = require('express');
+var multer = require('multer');
+var upload = multer({dest : 'uploads/'});
 var router = express.Router();
 var passHash = require('password-hash');
 var mongoose = require('mongoose');
 var User = require('../models/User.js')
 
-router.post('/register', function(req,res,next){
+router.post('/register', upload.array(), function(req,res,next){
   var e = req.body.email;
   var u = req.body.username;
   var p = req.body.password;
@@ -24,7 +26,7 @@ router.post('/register', function(req,res,next){
 
 });
 
-router.post('/login', function(req,res,next){
+router.post('/login', upload.array(), function(req,res,next){
   var u = req.body.username;
   var p = req.body.password;
 
