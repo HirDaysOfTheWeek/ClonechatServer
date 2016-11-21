@@ -61,4 +61,24 @@ router.post('/login', upload.array(), function(req,res,next){
 
 });
 
+router.post('/getUser', upload.array(), function(req, res, next){
+  var userId = req.body.username;
+  User.findOne({'username' : userId}, '_id username', function(err, user){
+    if(user === null){
+      var response = {
+        status : 'error',
+        message : 'Username is invalid'
+      };
+      res.status(200).send(response);
+    } else {
+      var response = {
+        status : 'ok',
+        message : 'User found',
+        username : user.username
+      };
+      res.status(200).send(response);
+    }
+  });
+});
+
 module.exports = router;
