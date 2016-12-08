@@ -11,17 +11,22 @@ router.post('/register', upload.array(), function(req,res,next){
   var u = req.body.username;
   var p = req.body.password;
 
-  var user = {
+  var u = {
     email : e,
     username : u,
     password : passHash.generate(p)
   };
 
-  User.create(user, function(err, user){
+  User.create(u, function(err, usr){
     if(err){
       return next(err);
     }
-    res.status(201).json(user);
+    var response = {
+      status : 'ok',
+      message : 'Registration Successful',
+      user : usr
+    };
+    res.status(201).send(response);
   });
 
 });
