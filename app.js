@@ -9,7 +9,8 @@ var mongoose = require('mongoose');
 var app = express();
 
 var users = require('./routes/users');
-var snaps = require('./routes/snaps')
+var snaps = require('./routes/snaps');
+var friendships = require('./routes/friendships');
 
 var http = require('http').Server(app);
 
@@ -27,5 +28,6 @@ http.listen(PORT, function(){
 
 app.use('/users', users);
 app.use('/snaps', snaps);
+app.use('/friendships', friendships);
 
 module.exports = app;

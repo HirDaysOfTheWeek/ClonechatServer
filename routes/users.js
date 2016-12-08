@@ -11,7 +11,16 @@ router.post('/register', upload.array(), function(req,res,next){
   var u = req.body.username;
   var p = req.body.password;
 
-  var u = {
+ if (p.length < 5) {
+    var result = {
+      status : 'error',
+      message : 'password too short'
+    }
+    res.status(200).send(result);
+    return;
+  }
+
+  var user = {
     email : e,
     username : u,
     password : passHash.generate(p)
@@ -21,6 +30,7 @@ router.post('/register', upload.array(), function(req,res,next){
     if(err){
       return next(err);
     }
+
     var response = {
       status : 'ok',
       message : 'Registration Successful',
