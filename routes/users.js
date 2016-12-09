@@ -45,7 +45,7 @@ router.post('/login', upload.array(), function(req,res,next){
   var u = req.body.username;
   var p = req.body.password;
 
-  User.findOne({'username' : u}, '_id username password', function(err,user){
+  User.findOne({'username' : u}, 'username email cloneScore new createdAt updatedAt', function(err,user){
     if(err){
       return next(err);
     }
@@ -78,7 +78,7 @@ router.post('/login', upload.array(), function(req,res,next){
 
 router.post('/getUser', upload.array(), function(req, res, next){
   var userId = req.body.username;
-  User.findOne({'username' : userId}, '_id username', function(err, user){
+  User.findOne({'username' : userId}, '_id username email cloneScore new createdAt updatedAt', function(err, user){
     if(user === null){
       var response = {
         status : 'error',
