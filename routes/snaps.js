@@ -33,4 +33,25 @@ router.post('/postSnap', upload.single('snapPhoto'), function(req, res, next){
   });
 });
 
+router.post('/getSnapsByUserId', upload.array(), function(req, res, next){
+  var username = req.body.username;
+  Snap.find({$or:[{'sender' : username}, {'recipient' : username}]}, function(err, docs) {
+      if (!err) {
+        var response = {
+          status : 'ok',
+          message : 'Snaps retrieved successfully',
+          snaps : docs
+        };
+        res.status(200).send(response);
+        return;
+      } else {
+        var response = {
+          status : 'error',
+          message : 'Error retrieving snaps, ' + err.msg;
+        }
+        res.status(200).send(response);
+      }
+  });
+});
+
 module.exports = router;
