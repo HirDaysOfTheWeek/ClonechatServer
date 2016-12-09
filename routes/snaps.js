@@ -29,7 +29,12 @@ router.post('/postSnap', upload.single('snapPhoto'), function(req, res, next){
     if (err) {
       return next(err);
     }
-    res.status(201).json(snap);
+    var response = {
+      status : 'ok',
+      message : 'Snap posted successfully',
+      snap : snap
+    }
+    res.status(201).send(response);
   });
 });
 
