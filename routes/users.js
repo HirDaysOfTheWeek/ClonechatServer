@@ -20,7 +20,7 @@ router.post('/register', upload.array(), function(req,res,next){
     return;
   }
 
-  var user = {
+  var u = {
     email : e,
     username : u,
     password : passHash.generate(p)
